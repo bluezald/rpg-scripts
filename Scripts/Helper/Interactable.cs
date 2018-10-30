@@ -13,7 +13,7 @@ public class Interactable : MonoBehaviour {
 	public virtual void Interact() {
 
 		// will be overriden by the derived classes
-		Debug.Log("Interacting with " + transform.name);
+		// Debug.Log("Interacting with " + transform.name);
 
 	}
 
