@@ -2,6 +2,7 @@
 
 public class CharacterStats : MonoBehaviour {
 
+	public GameObject floatingTextPrefab;
 	public int maxHealth = 100;
 	public int currentHealth { get; private set; }
 
@@ -30,6 +31,8 @@ public class CharacterStats : MonoBehaviour {
 		currentHealth -= damage;
 		Debug.Log (transform.name + " takes " + damage + " damage");
 
+		ShowFloatingText (damage);
+
 		if (OnHealthChanged != null) {
 			OnHealthChanged (maxHealth, currentHealth);
 		}
@@ -42,6 +45,16 @@ public class CharacterStats : MonoBehaviour {
 	public virtual void Die()
 	{
 		Debug.Log (transform.name + " died.");
+	}
+
+	void ShowFloatingText(int damage) 
+	{
+		if (floatingTextPrefab == null) {
+			return;
+		}
+
+		var text = Instantiate (floatingTextPrefab, transform.position, new Quaternion(0, -180, 0, 0), transform);
+		text.GetComponent<TextMesh> ().text = damage.ToString ();
 	}
 
 }
