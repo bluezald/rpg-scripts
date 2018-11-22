@@ -8,6 +8,11 @@ public class LevelLoader : MonoBehaviour {
 	public GameObject loadingScreen;
 	public Slider slider;
 
+	void Start () 
+	{
+		LoadLevel (2);
+	}
+
 	public void LoadLevel(int sceneIndex) 
 	{
 		StartCoroutine (LoadAsynchronously (sceneIndex));
