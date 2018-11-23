@@ -3,6 +3,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
+public static class LevelLoaderInfo {
+	public static int levelIndex { get; set; }
+}
+
 public class LevelLoader : MonoBehaviour {
 
 	public GameObject loadingScreen;
@@ -10,7 +15,7 @@ public class LevelLoader : MonoBehaviour {
 
 	void Start () 
 	{
-		LoadLevel (2);
+		LoadLevel (LevelLoaderInfo.levelIndex);
 	}
 
 	public void LoadLevel(int sceneIndex) 

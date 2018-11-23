@@ -38,8 +38,7 @@ public class EquipmentManager : MonoBehaviour {
 	public void Equip(Equipment newItem) 
 	{
 		int slotIndex = (int)newItem.equipSlot;
-		Unequip (slotIndex);
-		Equipment oldItem = null;
+		Equipment oldItem = Unequip (slotIndex);
 
 		if (onEquipmentChanged != null) {
 			onEquipmentChanged.Invoke (newItem, oldItem);
@@ -57,7 +56,7 @@ public class EquipmentManager : MonoBehaviour {
 		currentMeshes [slotIndex] = newMesh;
 	}
 
-	public void Unequip(int slotIndex)
+	public Equipment Unequip(int slotIndex)
 	{
 		if (currentEquipment [slotIndex] != null) {
 
@@ -74,7 +73,9 @@ public class EquipmentManager : MonoBehaviour {
 			if (onEquipmentChanged != null) {
 				onEquipmentChanged.Invoke (null, oldItem);
 			}
+			return oldItem;
 		}
+		return null;
 	}
 
 	public void UnequipAll() 
@@ -87,9 +88,9 @@ public class EquipmentManager : MonoBehaviour {
 
 	void SetEquipmentBlendShapes(Equipment item, int weight) 
 	{
-		foreach (EquipmentMeshRegion blendShape in item.coveredMeshRegions) {
-			targetMesh.SetBlendShapeWeight ((int)blendShape, weight);
-		}
+//		foreach (EquipmentMeshRegion blendShape in item.coveredMeshRegions) {
+//			targetMesh.SetBlendShapeWeight ((int)blendShape, weight);
+//		}
 	}
 
 	void EquipDefaultItems()
